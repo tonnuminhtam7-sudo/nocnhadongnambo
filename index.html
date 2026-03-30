@@ -3,336 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Núi Bà Đen Tây Ninh - Hành trình tâm linh từ Chùa Bà đến Đỉnh Vân Sơn thiêng liêng">
-    <title>Núi Bà Đen Tây Ninh • Linh Thiêng • Từ Chùa Tới Đỉnh</title>
+    <title>Núi Bà Đen - Tây Ninh | Núi Thiêng Miền Nam</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap');
         
-        body {
-            font-family: 'Inter', system_ui, sans-serif;
+        :root {
+            --tw-color-primary: #1a3c1a;
         }
         
-        .heading-font {
-            font-family: 'Playfair Display', sans-serif;
+        * {
+            font-family: 'Roboto', system-ui, sans-serif;
         }
         
         .hero-bg {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('https://picsum.photos/id/1015/2000/1200') center/cover no-repeat;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('https://source.unsplash.com/featured/?ba-den-mountain,tay-ninh') center/cover;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/N%C3%BAi_B%C3%A0_%C4%90en.jpg/1920px-N%C3%BAi_B%C3%A0_%C4%90en.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
         
-        .card-hover {
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        .nav-link {
+            transition: all 0.3s ease;
         }
         
-        .card-hover:hover {
-            transform: translateY(-12px) scale(1.04);
-            box-shadow: 0 30px 60px -15px rgb(180 83 9);
+        .nav-link:hover {
+            color: #f5d300;
+            transform: translateY(-2px);
         }
         
         .mountain-card {
-            position: relative;
-            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .mountain-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.75), transparent 60%);
-            opacity: 0;
-            transition: opacity 0.3s;
+        .mountain-card:hover {
+            transform: scale(1.05) rotate(1deg);
+            box-shadow: 0 25px 50px -12px rgb(26 60 26);
         }
         
-        .mountain-card:hover::after {
-            opacity: 1;
+        .lightbox {
+            animation: fadeIn 0.3s ease forwards;
         }
         
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(to right, #d97706, #fbbf24);
-            border-radius: 9999px;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .section-frame {
+            scroll-margin-top: 80px;
         }
     </style>
 </head>
-<body class="bg-stone-50 text-stone-800">
-
+<body class="bg-[#f8f5eb] text-[#1a3c1a]">
     <!-- NAVBAR -->
-    <nav class="bg-gradient-to-r from-amber-900 to-amber-950 text-white sticky top-0 z-50 shadow-2xl">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-            <div class="flex items-center gap-4">
-                <div class="w-11 h-11 bg-amber-300 rounded-2xl flex items-center justify-center text-4xl shadow-inner">⛰️</div>
+    <nav class="bg-[#1a3c1a] text-white shadow-xl fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-[#f5d300] rounded-full flex items-center justify-center text-2xl">🏔️</div>
                 <div>
-                    <h1 class="heading-font text-3xl tracking-tighter">NÚI BÀ ĐEN</h1>
-                    <p class="text-amber-300 text-xs -mt-1">TÂY NINH • 986m • LINH THIÊNG</p>
+                    <h1 class="text-2xl font-bold tracking-tighter">NÚI BÀ ĐEN</h1>
+                    <p class="text-xs text-[#f5d300] -mt-1">TÂY NINH • 986m</p>
                 </div>
             </div>
-            
-            <div class="hidden md:flex gap-8 text-sm font-medium">
-                <a href="#chua" class="hover:text-amber-300">Chùa Bà</a>
-                <a href="#cap-treo" class="hover:text-amber-300">Cáp Treo</a>
-                <a href="#dinh-nui" class="hover:text-amber-300">Đỉnh Núi</a>
-                <a href="#tam-linh" class="hover:text-amber-300">Tâm Linh</a>
+
+            <!-- Menu -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a onclick="loadPage('home')" class="nav-link cursor-pointer flex items-center gap-1">
+                    <span>🏠</span> TRANG CHỦ
+                </a>
+                <a onclick="loadPage('sub1')" class="nav-link cursor-pointer flex items-center gap-1">
+                    <span>📜</span> LỊCH SỬ & THẦN THOẠI
+                </a>
+                <a onclick="loadPage('sub2')" class="nav-link cursor-pointer flex items-center gap-1">
+                    <span>🧭</span> DU LỊCH & LEO NÚI
+                </a>
+                <a onclick="showFactsModal()" class="nav-link cursor-pointer flex items-center gap-1 bg-[#f5d300] text-[#1a3c1a] px-5 py-2 rounded-full hover:bg-yellow-300">
+                    KHÁM PHÁ NGAY
+                </a>
             </div>
-            
-            <button onclick="document.getElementById('chua').scrollIntoView({behavior:'smooth'})" 
-                    class="bg-amber-500 hover:bg-amber-600 px-7 py-3.5 rounded-3xl text-sm font-semibold flex items-center gap-2">
-                KHÁM PHÁ NGAY <span class="text-xl">→</span>
+
+            <!-- Mobile menu button -->
+            <button onclick="toggleMobileMenu()" class="md:hidden text-3xl">
+                ☰
+            </button>
+
+            <!-- Interactive elements -->
+            <div class="flex items-center gap-4">
+                <div onclick="toggleWeather()" class="flex items-center gap-2 bg-white/10 hover:bg-white/20 px-4 py-2 rounded-2xl cursor-pointer transition">
+                    <span id="weather-icon">⛅</span>
+                    <span id="weather-text" class="text-sm font-medium">26°C • Tây Ninh</span>
+                </div>
+                <button onclick="showShareModal()" 
+                        class="flex items-center justify-center w-10 h-10 bg-white/10 hover:bg-white/20 rounded-2xl text-xl transition">
+                    🔗
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#1a3c1a] px-6 py-4 border-t border-white/20">
+            <a onclick="loadPage('home');toggleMobileMenu()" class="block py-3 text-lg font-medium">🏠 Trang chủ</a>
+            <a onclick="loadPage('sub1');toggleMobileMenu()" class="block py-3 text-lg font-medium">📜 Lịch sử & Thần thoại</a>
+            <a onclick="loadPage('sub2');toggleMobileMenu()" class="block py-3 text-lg font-medium">🧭 Du lịch & Leo núi</a>
+            <button onclick="showFactsModal();toggleMobileMenu()" 
+                    class="w-full mt-4 bg-[#f5d300] text-[#1a3c1a] font-bold py-4 rounded-3xl text-lg">
+                KHÁM PHÁ NGAY
             </button>
         </div>
     </nav>
 
-    <!-- HERO -->
-    <header class="hero-bg h-screen flex items-center relative text-white">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <div class="inline-block bg-white/20 backdrop-blur-md px-8 py-3 rounded-3xl mb-6 text-sm font-medium tracking-wider">
-                NÓC NHÀ NAM BỘ • TÂY NINH
-            </div>
-            <h1 class="heading-font text-7xl md:text-8xl leading-none mb-6 tracking-tighter">
-                NÚI BÀ ĐEN<br>
-                <span class="text-amber-300 text-6xl">TÂY NINH</span>
-            </h1>
-            <p class="max-w-2xl mx-auto text-2xl text-amber-100">
-                Hành trình tâm linh từ Chùa Bà linh thiêng đến Đỉnh Vân Sơn hùng vĩ
-            </p>
-            
-            <div class="mt-12 flex flex-wrap gap-4 justify-center">
-                <a href="#chua" class="bg-white text-amber-900 px-10 py-5 rounded-3xl font-semibold text-lg inline-flex items-center gap-3 hover:shadow-2xl">
-                    BẮT ĐẦU TỪ CHÙA BÀ
-                </a>
-                <a href="#dinh-nui" class="border-2 border-white/90 hover:bg-white/10 px-10 py-5 rounded-3xl font-medium text-lg">
-                    LÊN ĐẾN ĐỈNH NÚI
-                </a>
-            </div>
-        </div>
-        
-        <div class="absolute bottom-10 left-1/2 text-center text-xs tracking-widest opacity-70">
-            SCROLL ĐỂ KHÁM PHÁ ↓
-        </div>
-    </header>
+    <!-- MAIN CONTENT CONTAINER -->
+    <div id="content" class="pt-20">
 
-    <!-- SECTION 1: CHÙA BÀ ĐEN -->
-    <section id="chua" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <span class="bg-amber-100 text-amber-800 px-6 py-2 rounded-full text-sm font-semibold">01 • CHÂN NÚI</span>
-                <h2 class="heading-font text-5xl mt-4">Chùa Bà Đen - Linh Sơn Thánh Mẫu</h2>
-                <p class="text-amber-700 mt-3 max-w-md mx-auto">Nơi khởi nguồn của tín ngưỡng, thờ Bà Đen - vị Thánh Mẫu che chở vùng đất Nam Bộ</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-10 items-center">
-                <div class="mountain-card rounded-3xl overflow-hidden shadow-2xl">
-                    <img src="https://picsum.photos/id/1016/900/650" 
-                         alt="Chùa Bà Đen Tây Ninh" 
-                         class="w-full h-full object-cover" 
-                         onerror="this.src='https://source.unsplash.com/featured/?chua-ba-den'">
-                    <div class="p-8 bg-white">
-                        <h3 class="text-3xl heading-font">Chùa Bà linh thiêng dưới chân núi</h3>
-                        <p class="mt-4 text-stone-600">
-                            Ngôi chùa cổ kính thờ Linh Sơn Thánh Mẫu (Bà Đen). Hàng triệu tín đồ đến đây dâng hương cầu bình an, sức khỏe và phước lành. 
-                            Không gian trang nghiêm hòa quyện với hương khói và núi non tạo nên cảm giác thanh tịnh sâu lắng.
-                        </p>
-                        <button onclick="showDetail(1)" 
-                                class="mt-6 text-amber-600 font-medium flex items-center gap-2 hover:gap-3">
-                            Xem chi tiết Chùa Bà →
-                        </button>
-                    </div>
-                </div>
-                
-                <div>
-                    <div class="bg-amber-50 rounded-3xl p-8 mb-8">
-                        <div class="text-amber-500 text-5xl mb-4">🙏</div>
-                        <h4 class="font-semibold text-xl">Tín ngưỡng Linh Sơn Thánh Mẫu</h4>
-                        <p class="text-stone-600 mt-2">Bà Đen là vị Thánh Mẫu da ngăm đen, được vua Gia Long sắc phong, che chở muôn dân Nam Bộ.</p>
-                    </div>
-                    <img src="https://picsum.photos/id/1005/800/420" 
-                         alt="Tượng Bà Đen Núi Bà Đen" 
-                         class="rounded-3xl w-full shadow-xl" 
-                         onerror="this.src='https://source.unsplash.com/featured/?linh-son-thanh-mau'">
-                </div>
-            </div>
-        </div>
-    </section>
+        <!-- ====================== TRANG CHỦ (HOME) ====================== -->
+        <div id="home-page">
 
-    <!-- SECTION 2: CÁP TREO -->
-    <section id="cap-treo" class="py-20 bg-gradient-to-b from-amber-50 to-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <span class="bg-amber-100 text-amber-800 px-6 py-2 rounded-full text-sm font-semibold">02 • HÀNH TRÌNH</span>
-                <h2 class="heading-font text-5xl mt-4">Cáp Treo - Kết nối Đất Trời</h2>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="card-hover bg-white rounded-3xl overflow-hidden shadow-xl">
-                    <img src="https://picsum.photos/id/201/800/520" 
-                         alt="Cáp treo Núi Bà Đen" 
-                         class="w-full h-64 object-cover"
-                         onerror="this.src='https://source.unsplash.com/featured/?cable-car-mountain'">
-                    <div class="p-7">
-                        <h3 class="text-2xl heading-font">Hệ thống cáp treo hiện đại</h3>
-                        <p class="mt-3 text-sm text-stone-600 leading-relaxed">
-                            Chỉ 8-15 phút từ chân núi lên đỉnh. Ngắm toàn cảnh đồng bằng Tây Ninh, hồ Dầu Tiếng và rừng núi hùng vĩ từ trên cao.
-                        </p>
-                        <div class="mt-6 text-amber-500 text-xs font-medium">🚡 3 tuyến • Châu Âu chuẩn</div>
-                    </div>
-                </div>
-                
-                <div class="card-hover bg-white rounded-3xl overflow-hidden shadow-xl">
-                    <img src="https://picsum.photos/id/251/800/520" 
-                         alt="View từ cáp treo Núi Bà Đen" 
-                         class="w-full h-64 object-cover"
-                         onerror="this.src='https://source.unsplash.com/featured/?mountain-view-vietnam'">
-                    <div class="p-7">
-                        <h3 class="text-2xl heading-font">Cảnh quan tuyệt đẹp</h3>
-                        <p class="mt-3 text-sm text-stone-600 leading-relaxed">
-                            Từ cabin cáp treo, du khách chiêm ngưỡng thảm xanh rừng núi, đồng ruộng bao la và mây trời Tây Ninh.
-                        </p>
-                    </div>
-                </div>
-                
-                <div onclick="showDetail(2)" class="card-hover bg-gradient-to-br from-amber-700 to-amber-900 text-white rounded-3xl overflow-hidden shadow-xl cursor-pointer flex flex-col justify-end h-full min-h-[380px]">
-                    <div class="p-8">
-                        <div class="text-amber-300 text-sm mb-1">TRẢI NGHIỆM ĐẶC BIỆT</div>
-                        <h3 class="text-3xl heading-font">Lên núi bằng cáp treo</h3>
-                        <p class="mt-4 opacity-90">Mỗi mét lên cao là một bước gần hơn với thần linh và sự thanh tịnh.</p>
-                        <div class="mt-8 text-xs bg-white/20 inline-block px-5 py-2 rounded-3xl">Nhấn để xem chi tiết</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 3: ĐỈNH NÚI -->
-    <section id="dinh-nui" class="py-20 bg-stone-900 text-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-12 gap-12 items-center">
-                <div class="md:col-span-5">
-                    <span class="text-amber-400 font-bold tracking-widest">03 • ĐỈNH CAO NHẤT</span>
-                    <h2 class="heading-font text-6xl mt-4 leading-none">Đỉnh Vân Sơn<br>986m</h2>
-                    <p class="mt-8 text-amber-100 text-lg">
-                        Nơi nhìn bao quát toàn cảnh Tây Ninh. Không gian mát mẻ, mây mù bao phủ, mang đến cảm giác gần trời và gần gũi với Bà Đen nhất.
-                    </p>
-                    <div class="mt-10 flex gap-6">
-                        <div>
-                            <div class="text-4xl font-semibold text-amber-400">360°</div>
-                            <div class="text-sm text-amber-300">Panorama view</div>
+            <!-- HERO SECTION -->
+            <section class="hero-bg h-screen flex items-center text-white">
+                <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6">
+                        <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-6 py-2 rounded-3xl text-sm font-medium">
+                            <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                            NÚI THIÊNG MIỀN NAM • TÂY NINH
                         </div>
-                        <div>
-                            <div class="text-4xl font-semibold text-amber-400">Tượng Phật</div>
-                            <div class="text-sm text-amber-300">Bà Tây Bổ Đà Sơn 72m</div>
+                        <h1 class="text-6xl md:text-7xl font-bold leading-none tracking-tighter">
+                            NÚI BÀ ĐEN<br>
+                            <span class="text-[#f5d300]">986 mét vĩ đại</span>
+                        </h1>
+                        <p class="text-xl max-w-md">Nơi linh thiêng của Bà Đen, cảnh quan hùng vĩ và hành trình chinh phục bầu trời Tây Ninh.</p>
+                        
+                        <!-- Interactive buttons -->
+                        <div class="flex flex-wrap gap-4">
+                            <button onclick="loadPage('sub2')" 
+                                    class="bg-[#f5d300] hover:bg-yellow-300 text-[#1a3c1a] font-bold px-8 py-5 rounded-3xl flex items-center gap-3 text-lg">
+                                <span>🧗‍♂️</span> LEO NÚI NGAY
+                            </button>
+                            <button onclick="loadPage('sub1')" 
+                                    class="border-2 border-white hover:bg-white/20 font-bold px-8 py-5 rounded-3xl flex items-center gap-3 text-lg">
+                                📖 TÌM HIỂU THẦN THOẠI
+                            </button>
+                            <button onclick="openGallery()" 
+                                    class="border-2 border-white hover:bg-white/20 font-bold px-8 py-5 rounded-3xl flex items-center gap-3 text-lg">
+                                🖼️ XEM TOÀN CẢNH NÚI
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-center gap-8 text-sm">
+                            <div class="flex items-center gap-2">
+                                <span class="text-3xl">🌲</span>
+                                <div>
+                                    <div class="font-bold">986m</div>
+                                    <div class="text-white/70">Đỉnh cao nhất Nam Bộ</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-3xl">🚠</span>
+                                <div>
+                                    <div class="font-bold">Cáp treo hiện đại</div>
+                                    <div class="text-white/70">Đưa bạn lên đỉnh chỉ 15 phút</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hero image frame (interactive) -->
+                    <div class="relative hidden md:block">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/N%C3%BAi_B%C3%A0_%C4%90en_T%C3%A2y_Ninh.jpg/1280px-N%C3%BAi_B%C3%A0_%C4%90en_T%C3%A2y_Ninh.jpg" 
+                             alt="Núi Bà Đen Tây Ninh - Toàn cảnh hùng vĩ"
+                             class="rounded-3xl shadow-2xl w-full object-cover h-[520px] mountain-card">
+                        <div class="absolute bottom-8 left-8 bg-white/90 text-[#1a3c1a] px-6 py-3 rounded-2xl shadow-xl flex items-center gap-3">
+                            <span class="text-4xl">🏔️</span>
+                            <div>
+                                <p class="font-bold text-lg">Hiện tại đang có mây</p>
+                                <p class="text-sm text-gray-600">Đỉnh núi chìm trong sương mù huyền ảo</p>
+                            </div>
+                        </div>
+                        <!-- Floating badge -->
+                        <div onclick="showTempleInfo()" 
+                             class="absolute -top-4 -right-4 bg-[#f5d300] text-[#1a3c1a] px-5 py-2 rounded-3xl font-bold shadow-2xl flex items-center gap-2 cursor-pointer hover:scale-110 transition">
+                            <span>🛕</span> Linh Sơn Thánh Mẫu
                         </div>
                     </div>
                 </div>
-                <div class="md:col-span-7 rounded-3xl overflow-hidden shadow-2xl border border-amber-500/30">
-                    <img src="https://picsum.photos/id/1015/1400/780" 
-                         alt="Đỉnh Núi Bà Đen Tây Ninh" 
-                         class="w-full"
-                         onerror="this.src='https://source.unsplash.com/featured/?ba-den-summit'">
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- TÂM LINH -->
-    <section id="tam-linh" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="heading-font text-5xl mb-6">Tâm linh &amp; Tín ngưỡng Núi Bà Đen</h2>
-            <p class="max-w-xl mx-auto text-stone-600">Nơi hội tụ linh khí, tín ngưỡng dân gian kết hợp Phật giáo, mang đến bình an và phước lành cho muôn dân.</p>
-            
-            <div class="mt-16 grid md:grid-cols-3 gap-8">
-                <div class="p-8 border border-amber-200 rounded-3xl text-left">
-                    <div class="text-5xl mb-6">🪔</div>
-                    <h3 class="font-semibold text-2xl">Linh Sơn Thánh Mẫu</h3>
-                    <p class="mt-4 text-stone-600">Bà Đen che chở, ban phước lành, sức khỏe và thịnh vượng cho những ai thành tâm hành hương.</p>
-                </div>
-                <div class="p-8 border border-amber-200 rounded-3xl text-left">
-                    <div class="text-5xl mb-6">🌄</div>
-                    <h3 class="font-semibold text-2xl">Hùng vĩ thiên nhiên</h3>
-                    <p class="mt-4 text-stone-600">Núi non, hang động, mây trời giúp thanh lọc tâm hồn, kết nối con người với vũ trụ.</p>
-                </div>
-                <div class="p-8 border border-amber-200 rounded-3xl text-left">
-                    <div class="text-5xl mb-6">🙏</div>
-                    <h3 class="font-semibold text-2xl">Hành hương truyền thống</h3>
-                    <p class="mt-4 text-stone-600">Hàng triệu người Việt đến Núi Bà Đen mỗi năm để cầu nguyện và tìm sự bình yên nội tâm.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-gradient-to-br from-amber-950 to-black text-amber-100 py-16">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <p class="text-2xl heading-font">Núi Bà Đen Tây Ninh</p>
-            <p class="mt-2 opacity-70">Trang web được thiết kế với hình ảnh thực tế, màu sắc rực rỡ và đầy ý nghĩa tâm linh.</p>
-            <p class="text-xs mt-12 opacity-40">Mã HTML này sử dụng hình ảnh đẹp của Núi Bà Đen. Bạn có thể thay thế URL hình ảnh bằng link thực tế từ Google hoặc Unsplash nếu cần.</p>
-        </div>
-    </footer>
-
-    <!-- Modal chi tiết -->
-    <div id="modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-        <div class="bg-white max-w-2xl w-full mx-4 rounded-3xl overflow-hidden">
-            <div id="modal-content" class="p-8">
-                <!-- Nội dung sẽ được JS thay đổi -->
-            </div>
-            <div class="p-6 border-t flex justify-end">
-                <button onclick="closeModal()" class="px-8 py-3 text-amber-600 font-medium">ĐÓNG</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function showDetail(id) {
-            const modal = document.getElementById('modal');
-            const content = document.getElementById('modal-content');
-            
-            if (id === 1) {
-                content.innerHTML = `
-                    <h2 class="heading-font text-4xl mb-6">Chùa Bà Đen - Trung tâm tín ngưỡng</h2>
-                    <img src="https://picsum.photos/id/1016/900/500" class="rounded-2xl w-full mb-6" alt="Chùa Bà">
-                    <p class="text-stone-600 leading-relaxed">
-                        Chùa Bà Đen nằm ngay chân núi, là nơi thờ chính Linh Sơn Thánh Mẫu. Đây là điểm khởi đầu của mọi hành trình hành hương. 
-                        Tượng Bà Đen được thờ trang nghiêm, mang ý nghĩa che chở, ban bình an cho du khách và người dân Tây Ninh.
-                    </p>
-                    <div class="mt-8 grid grid-cols-2 gap-4 text-sm">
-                        <div class="bg-amber-50 p-4 rounded-2xl">🪔 Dâng hương cầu bình an</div>
-                        <div class="bg-amber-50 p-4 rounded-2xl">🌿 Không gian thanh tịnh</div>
-                    </div>
-                `;
-            } else if (id === 2) {
-                content.innerHTML = `
-                    <h2 class="heading-font text-4xl mb-6">Trải nghiệm Cáp Treo Núi Bà Đen</h2>
-                    <img src="https://picsum.photos/id/201/900/500" class="rounded-2xl w-full mb-6" alt="Cáp treo">
-                    <p class="text-stone-600 leading-relaxed">
-                        Hệ thống cáp treo hiện đại đưa bạn lên độ cao 986m chỉ trong vài phút. Từ trên cao, bạn sẽ chiêm ngưỡng toàn cảnh đồng bằng sông Cửu Long, hồ Dầu Tiếng và vẻ đẹp hùng vĩ của núi non.
-                    </p>
-                    <div class="mt-6 text-amber-600 font-medium">Thời gian: khoảng 8 - 15 phút • View 360° tuyệt đẹp</div>
-                `;
-            }
-            
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-        }
-        
-        function closeModal() {
-            const modal = document.getElementById('modal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
-        
-        // Tailwind script
-        console.log('%c✅ Trang web Núi Bà Đen Tây Ninh đã sẵn sàng với hình ảnh thực tế và các khung tương tác!', 'color:#d97706; font-weight:bold');
-        
-        // Click outside modal to close
-        document.getElementById('modal').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
-        });
-    </script>
-</body>
-</html>
+            <!-- GIỚI THIỆU CHI TIẾT -->
+            <section class="section-frame max-w-7xl mx-auto px-6 py-20">
+                <div class="grid md:grid-cols-12 gap-12 items-center">
+                    <div class="md:col-span-7">
+                        <h2 class="text-5xl font-bold mb-6">Núi Bà Đen – Biểu tượng tâm linh & thiên nhiên Tây Ninh</h2>
+                        <p class="text-lg leading-relaxed mb-8 text-gray-700">
+                            Núi Bà Đen nằm tại huyện Dương Minh Châu, tỉnh Tây Ninh, là ngọn núi cao nhất Nam Bộ với độ cao 986m. 
+                            Đây không chỉ là điểm du lịch nổi tiếng mà còn là nơi linh thiêng với đền thờ Bà Đen (Linh Sơn Thánh Mẫu).
+                        </p>
+                        
+                        <!-- Accordion tương tác -->
+                        <div class="space-y-4">
+                            <div onclick="toggleAccordion(this)" class="mountain-card bg-white rounded-3xl p-6 cursor-pointer border border
